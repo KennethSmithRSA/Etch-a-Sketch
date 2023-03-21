@@ -9,9 +9,12 @@ html, body {
     background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red);
 }
 
+.commands {
+    margin: 10px 0 10px 36%;
+}
+
 .userInput {
     height: 20px;
-    margin: 10px 0 10px 46%;
     background-color: black;
     color: white;
 }
@@ -43,5 +46,5 @@ html, body {
 }
 
 .hover {
-    background-color: red;
+    background-color: black;
 }
