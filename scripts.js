@@ -4,8 +4,6 @@ const userInput = document.querySelector(".userInput");
 
 let size = 16;
 
-console.log(container)
-
 function makeGrid(columns, rows) {
     let grid = document.createElement('div');
     grid.className = "grid";
@@ -26,17 +24,21 @@ function makeGrid(columns, rows) {
 makeGrid(size, size);
 // hover();
 // randomColorHover();
+increaseLightnessHover();
 
-/* function hover() {
-    let rows = document.querySelectorAll(".row");
 
-    rows.forEach((row) => {
-        row.addEventListener('mouseenter', () => {
-            row.classList.add("hover");
-        })
-});
-} */
+// Change row to solid black
+// function hover() {
+//     let rows = document.querySelectorAll(".row");
 
+//     rows.forEach((row) => {
+//         row.addEventListener('mouseenter', () => {
+//             row.classList.add("hover");
+//         })
+// });
+// }
+
+// Change row to random RGB value
 /* function randomColor() {
     let color = [];
     for (let i = 0; i < 3; i++) {
@@ -52,8 +54,32 @@ function randomColorHover() {
         row.addEventListener('mouseenter', () => {
             row.style.backgroundColor = randomColor();
         });
-    })
+    });
 }*/
+
+// Change row to a higher 'lightnessvalue':
+function increaseLightness(rgb) {
+    let r = parseInt(rgb[0]);
+    let g = parseInt(rgb[1]);
+    let b = parseInt(rgb[2]);
+
+    let l = (Math.max((r/255), (g/255), (b/255)) + Math.min((r/255), (g/255), (b/255))) / 2;
+    return l * 50;
+}
+
+function increaseLightnessHover() {
+    let rows = document.querySelectorAll(".row");
+
+    rows.forEach((row) => {
+        row.addEventListener('mouseenter', () => {
+            let value = window.getComputedStyle(row).backgroundColor;
+            let t = value.slice(4, -1);
+            let rgb = t.split(", ");
+            row.style.backgroundColor = "hsl(0, 0%, " + increaseLightness(rgb) + "%)";
+            console.log(increaseLightness(rgb));
+        });
+    });
+}
 
 userInput.addEventListener('click', () => {
     let grid = document.querySelector(".grid");
@@ -67,4 +93,5 @@ userInput.addEventListener('click', () => {
     makeGrid(size, size);
     // hover();
     // randomColorHover();
+    increaseLightnessHover();
 });
