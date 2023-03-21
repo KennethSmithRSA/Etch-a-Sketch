@@ -24,18 +24,36 @@ function makeGrid(columns, rows) {
 }
 
 makeGrid(size, size);
-hover();
+// hover();
+// randomColorHover();
 
-function hover() {
+/* function hover() {
     let rows = document.querySelectorAll(".row");
 
     rows.forEach((row) => {
-    row.addEventListener('mouseenter', () => {
-        console.log(row);
-        row.classList.add("hover");
-    })
+        row.addEventListener('mouseenter', () => {
+            row.classList.add("hover");
+        })
 });
+} */
+
+/* function randomColor() {
+    let color = [];
+    for (let i = 0; i < 3; i++) {
+        color.push(Math.floor(Math.random() * 256));
+    }
+    return 'rgb(' + color.join(', ') + ')';
 }
+
+function randomColorHover() {
+    let rows = document.querySelectorAll(".row");
+    
+    rows.forEach((row) => {
+        row.addEventListener('mouseenter', () => {
+            row.style.backgroundColor = randomColor();
+        });
+    })
+}*/
 
 userInput.addEventListener('click', () => {
     let grid = document.querySelector(".grid");
@@ -47,5 +65,6 @@ userInput.addEventListener('click', () => {
 
     container.removeChild(grid);
     makeGrid(size, size);
-    hover();
+    // hover();
+    // randomColorHover();
 });
