@@ -1,15 +1,46 @@
 const body = document.querySelector(".body");
 const container = document.getElementById("container");
+const userInput = document.querySelector(".userInput");
 
-function makeGrid(rows, cols) {
-    container.style.setProperty('--grid-rows', rows);
-    container.style.setProperty('--grid-cols', cols);
+let size = 16;
 
-    for (i = 0; i < (rows * cols); i++) {
-        let block = document.createElement("div");
-        block.innerText = (i + 1);
-        container.appendChild(block).className = "block";
-    };
-};
+function makeGrid(columns, rows) {
+    let grid = document.createElement('div');
+    grid.className = "grid";
 
-makeGrid(16, 16);
+    for (let i = 0; i < columns; i++) {
+        let column = document.createElement('div');
+        column.className = 'column';
+        for (let j = 0; j < rows; j++) {
+            let row = document.createElement('div');
+            row.className = 'row';
+            row.textContent = (i + "-" + j);
+            column.appendChild(row);
+        }
+        grid.appendChild(column);
+    }
+    body.appendChild(grid);
+}
+
+makeGrid(size, size);
+
+userInput.addEventListener('click', () => {
+    let grid = document.querySelector(".grid");
+
+    let size = parseInt(prompt("Please enter the size of the grid: ", 16));
+    while ((size < 0) || (size > 100)) {
+        size = parseInt(prompt("Please enter the size of the grid: ", 16));
+    }
+
+    console.log(grid);
+    body.removeChild(grid);
+    makeGrid(size, size);
+});
+
+let rows = document.querySelectorAll(".row");
+
+rows.forEach((row) => {
+    row.addEventListener('mouseenter', () => {
+        row.classList.add("hover");
+    })
+});
