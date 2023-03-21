@@ -1,8 +1,10 @@
 const body = document.querySelector(".body");
-const container = document.getElementById("container");
+let container = document.querySelector(".container");
 const userInput = document.querySelector(".userInput");
 
 let size = 16;
+
+console.log(container)
 
 function makeGrid(columns, rows) {
     let grid = document.createElement('div');
@@ -14,15 +16,26 @@ function makeGrid(columns, rows) {
         for (let j = 0; j < rows; j++) {
             let row = document.createElement('div');
             row.className = 'row';
-            row.textContent = (i + "-" + j);
             column.appendChild(row);
         }
         grid.appendChild(column);
     }
-    body.appendChild(grid);
+    container.appendChild(grid);
 }
 
 makeGrid(size, size);
+hover();
+
+function hover() {
+    let rows = document.querySelectorAll(".row");
+
+    rows.forEach((row) => {
+    row.addEventListener('mouseenter', () => {
+        console.log(row);
+        row.classList.add("hover");
+    })
+});
+}
 
 userInput.addEventListener('click', () => {
     let grid = document.querySelector(".grid");
@@ -32,15 +45,7 @@ userInput.addEventListener('click', () => {
         size = parseInt(prompt("Please enter the size of the grid: ", 16));
     }
 
-    console.log(grid);
-    body.removeChild(grid);
+    container.removeChild(grid);
     makeGrid(size, size);
-});
-
-let rows = document.querySelectorAll(".row");
-
-rows.forEach((row) => {
-    row.addEventListener('mouseenter', () => {
-        row.classList.add("hover");
-    })
+    hover();
 });
