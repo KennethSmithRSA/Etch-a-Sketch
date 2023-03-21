@@ -1,6 +1,9 @@
 const body = document.querySelector(".body");
 let container = document.querySelector(".container");
 const userInput = document.querySelector(".userInput");
+const solid = document.querySelector(".fill");
+const random = document.querySelector(".random");
+const lightness = document.querySelector(".random");
 
 let size = 16;
 
